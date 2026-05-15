@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kashif Anwar — Biomedical AI Engineer</title>
+<meta name="description" content="Kashif Anwar — Biomedical AI engineer working on computer vision and deep learning for healthcare, gait analysis, and frailty detection.">
+<meta name="author" content="Kashif Anwar">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Geist:wght@300;400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream:      #F0E9DA;
+    --cream-deep: #E5DCC8;
+    --ink:        #1C1A17;
+    --ink-mute:   #4A463E;
+    --muted:      #8A8275;
+    --accent:     #D6391F;
+    --accent-dk:  #A82B16;
+    --line:       rgba(28,26,23,0.12);
+    --sans: 'Geist', -apple-system, system-ui, sans-serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --mono: 'Geist Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(240, 233, 218, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .logo::after { content: '.'; color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a::before {
+    content: counter(navcount, decimal-leading-zero) ' ';
+    counter-increment: navcount;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-right: 4px;
+  }
+  .nav-links { counter-reset: navcount; }
+  .nav-links a:hover { color: var(--accent); }
+
+  @media (max-width: 720px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+  }
+
+  section {
+    padding: 120px 40px;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+  }
+  @media (max-width: 720px) { section { padding: 80px 24px; } }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+    color: var(--ink);
+  }
+  .section-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding-top: 140px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: end;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(60px, 12vw, 180px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 40px;
+  }
+  .hero h1 .it { font-style: italic; font-weight: 400; }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 28px);
+    color: var(--ink-mute);
+    max-width: 700px;
+    line-height: 1.4;
+    margin-bottom: 60px;
+  }
+  .hero-tagline em { color: var(--accent); font-style: italic; }
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+  }
+  .hero-meta span { color: var(--ink); }
+  .hero-scroll {
+    margin-top: 40px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-scroll::after {
+    content: '↓';
+    font-size: 14px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .about-prose p {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .about-prose p:first-child::first-letter {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.85;
+    float: left;
+    padding: 4px 12px 0 0;
+    color: var(--accent);
+  }
+  .about-side {
+    background: var(--cream-deep);
+    padding: 32px;
+    border-radius: 2px;
+  }
+  .about-side h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .about-side dl { display: grid; grid-template-columns: auto 1fr; gap: 12px 20px; }
+  .about-side dt { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; padding-top: 3px; }
+  .about-side dd { font-size: 15px; color: var(--ink); }
+
+  .research-list { display: flex; flex-direction: column; }
+  .research-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+    transition: padding 0.3s ease;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .research-item:hover { padding-left: 16px; }
+  .research-item:last-child { border-bottom: 1px solid var(--line); }
+  .research-year {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .research-item h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .research-item:hover h3 { color: var(--accent); }
+  .research-meta {
+    font-size: 14px;
+    color: var(--muted);
+    font-family: var(--mono);
+    letter-spacing: 0.03em;
+  }
+  .research-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .research-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .project {
+    background: var(--cream-deep);
+    padding: 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 340px;
+    transition: transform 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project:hover {
+    transform: translateY(-4px);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .project:hover .project-cat { color: var(--accent); }
+  .project:hover .project-arrow { transform: translate(4px, -4px); color: var(--accent); }
+  .project:hover p { color: var(--cream); }
+  .project-cat {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .project h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .project p {
+    font-size: 14px;
+    color: var(--ink-mute);
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .project-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .project-stat {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .project-stat strong { display: block; font-family: var(--serif); font-size: 22px; color: var(--ink); font-weight: 700; margin-bottom: 2px; }
+  .project:hover .project-stat strong { color: var(--cream); }
+  .project-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .project-arrow { font-size: 20px; transition: transform 0.3s, color 0.3s; }
+  .p1 { grid-column: span 7; }
+  .p2 { grid-column: span 5; }
+  @media (max-width: 900px) { .p1, .p2 { grid-column: span 12; } }
+
+  .blog-list { display: flex; flex-direction: column; }
+  .blog-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.3s;
+    align-items: baseline;
+  }
+  .blog-item:hover { transform: translateX(8px); }
+  .blog-item:hover h3 { color: var(--accent); }
+  .blog-item:last-child { border-bottom: 1px solid var(--line); }
+  .blog-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .blog-item h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .blog-item p {
+    color: var(--ink-mute);
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 640px;
+  }
+  @media (max-width: 720px) {
+    .blog-item { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 60px;
+  }
+  @media (max-width: 720px) { .cv-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .cv-category {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .cv-entries { display: flex; flex-direction: column; }
+  .cv-entry {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+  .cv-entry:first-child { border-top: none; padding-top: 0; }
+  .cv-year {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .cv-entry h4 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .cv-entry p { font-size: 14px; color: var(--ink-mute); line-height: 1.5; }
+  .skills-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .skill-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--cream-deep);
+    border-radius: 99px;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+  }
+
+  .contact-section {
+    background: var(--ink);
+    color: var(--cream);
+    max-width: none;
+    padding: 140px 40px;
+    margin: 0;
+  }
+  .contact-inner { max-width: 1280px; margin: 0 auto; }
+  .contact-section .section-num { color: var(--accent); }
+  .contact-section h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 48px;
+    color: var(--cream);
+  }
+  .contact-section h2 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .contact-email {
+    font-family: var(--serif);
+    font-size: clamp(24px, 4vw, 40px);
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    transition: color 0.2s;
+    word-break: break-all;
+  }
+  .contact-email:hover { color: var(--accent); }
+  .contact-links {
+    margin-top: 64px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .contact-links a {
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240,233,218,0.3);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    padding: 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Kashif Anwar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Thoughts</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Biomedical AI · Computer Vision · Edge Deployment</div>
+    <h1>Kashif<br><span class="it">Anwar.</span></h1>
+    <p class="hero-tagline">
+      I build <em>AI-powered healthcare systems</em> — computer vision and deep learning for medical imaging, gait analysis, and physical frailty detection. Based in Islamabad, working across borders.
+    </p>
+    <div class="hero-meta">
+      <div><span>Research Assistant</span> · NCAI, Islamabad</div>
+      <div><span>MS</span> · Mechatronics, NUST</div>
+      <div><span>Focus</span> · Biomedical Robotics &amp; AI</div>
+    </div>
+    <div class="hero-scroll">Scroll to read</div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <span class="section-num">01 — About</span>
+  <h2 class="section-title">A few <em>things</em> about me.</h2>
+  <div class="about-grid">
+    <div class="about-prose">
+      <p>I'm an engineer with a Master's degree in Mechatronics from NUST, with 2+ years of experience developing AI-powered healthcare solutions. My work sits at the intersection of computer vision, deep learning, and medical devices — specifically gait assessment and physical frailty detection using depth sensors and motion capture.</p>
+      <p>I've led the development of indigenous AI systems for international collaborations with Japanese (Juntendo University) and Korean research teams, including on-site deployment and researcher training. The systems I build run on real edge hardware — Raspberry Pi 5, Azure Kinect, NVIDIA Jetson — because hospital floors don't have GPUs.</p>
+      <p>I'm fluent in English with extensive experience in multicultural research teams. I write here about the work, what I'm reading, and the things I'm still figuring out.</p>
+    </div>
+    <aside class="about-side">
+      <h3>The basics</h3>
+      <dl>
+        <dt>Role</dt><dd>Research Assistant, Biomedical AI Systems</dd>
+        <dt>Place</dt><dd>NCAI, Islamabad</dd>
+        <dt>Education</dt><dd>MS Mechatronics, NUST (2025)</dd>
+        <dt>Focus</dt><dd>Medical CV, Edge AI, Gait Analysis</dd>
+        <dt>Stack</dt><dd>Python, C++, PyTorch, ROS2</dd>
+        <dt>Hardware</dt><dd>Kinect, Raspberry Pi, Jetson</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section id="research" class="reveal">
+  <span class="section-num">02 — Research &amp; Publications</span>
+  <h2 class="section-title">Selected <em>work.</em></h2>
+  <div class="research-list">
+    <a href="https://doi.org/10.1177/10849785251414768" target="_blank" rel="noopener" class="research-item">
+      <div class="research-year">2025</div>
+      <div>
+        <h3>Neural Decoding of Ultrasound-Modulated Pain States via Deep Learning: Insights from fMRI Data</h3>
+        <div class="research-meta">Co-author · Journal of Cancer Biotherapy and Radiopharmaceuticals</div>
+      </div>
+      <div class="research-tag">Read →</div>
+    </a>
+    <div class="research-item">
+      <div class="research-year">2025</div>
+      <div>
+        <h3>Adaptive Resource-Aware Neural SLAM: Dual-Strategy for Edge Deployment</h3>
+        <div class="research-meta">First author · Journal of Electronic Imaging · Under review</div>
+      </div>
+      <div class="research-tag">In review</div>
+    </div>
+    <a href="https://scholar.google.com/citations?user=OFEk0w0AAAAJ&hl=en" target="_blank" rel="noopener" class="research-item">
+      <div class="research-year">↗</div>
+      <div>
+        <h3>Full publication list on Google Scholar</h3>
+        <div class="research-meta">Citations, co-authors, and ongoing work</div>
+      </div>
+      <div class="research-tag">Scholar →</div>
+    </a>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <span class="section-num">03 — Projects</span>
+  <h2 class="section-title">Things I've <em>built.</em></h2>
+  <div class="projects-grid">
+    <a href="https://github.com/Kashif-Anwar0" target="_blank" rel="noopener" class="project p1">
+      <div>
+        <div class="project-cat">International Collaboration · Japan · 2025</div>
+        <h3>AI-Powered Physical Frailty Assessment System</h3>
+        <p>Built with Azure Kinect DK and Xbox Kinect for geriatric assessment. 3D skeletal tracking with 25-joint body model. CNN-LSTM architecture trained on 150+ elderly participants, validated against SPPB and Fried Frailty Criteria. Delivered and trained the team at Juntendo University, Tokyo.</p>
+        <div class="project-stats">
+          <div class="project-stat"><strong>89%</strong>Frailty accuracy</div>
+          <div class="project-stat"><strong>47</strong>Biomech features</div>
+          <div class="project-stat"><strong>75%</strong>Less clinician load</div>
+        </div>
+      </div>
+      <div class="project-foot">
+        <span>View on GitHub</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </a>
+    <a href="https://github.com/Kashif-Anwar0" target="_blank" rel="noopener" class="project p2">
+      <div>
+        <div class="project-cat">International · Korea · 2024</div>
+        <h3>Indigenous Gait Analysis System for Neurological Disorders</h3>
+        <p>Embedded gait analysis on Raspberry Pi 5 with monocular camera. MediaPipe pose estimation + custom ResNet-50. Validated against Vicon (r = 0.91). Deployed at multiple clinical sites via Docker.</p>
+        <div class="project-stats">
+          <div class="project-stat"><strong>200+</strong>Patients</div>
+          <div class="project-stat"><strong>25 FPS</strong>On-device</div>
+          <div class="project-stat"><strong>±2cm</strong>Stride accuracy</div>
+        </div>
+      </div>
+      <div class="project-foot">
+        <span>View on GitHub</span>
+        <span class="project-arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="blog" class="reveal">
+  <span class="section-num">04 — Thoughts</span>
+  <h2 class="section-title">Notes &amp; <em>half-formed ideas.</em></h2>
+  <div class="blog-list">
+    <a href="#" class="blog-item">
+      <div class="blog-date">Coming soon</div>
+      <div>
+        <h3>Why edge deployment matters more than benchmark accuracy</h3>
+        <p>A model that runs on a Raspberry Pi in a clinic is worth more than a SOTA model that needs a cloud GPU. Some lessons from shipping AI to hospitals that don't have a data center.</p>
+      </div>
+    </a>
+    <a href="#" class="blog-item">
+      <div class="blog-date">Coming soon</div>
+      <div>
+        <h3>Building an AI system that travels: notes from Tokyo</h3>
+        <p>What I learned deploying a frailty detection system at Juntendo University — about technology transfer, training researchers, and what survives the flight.</p>
+      </div>
+    </a>
+    <a href="#" class="blog-item">
+      <div class="blog-date">Coming soon</div>
+      <div>
+        <h3>From 45 minutes to 5: rethinking clinical gait assessment</h3>
+        <p>How automation changes the question, not just the answer. Notes on what we measured, what we couldn't, and what clinicians actually want.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="cv" class="reveal">
+  <span class="section-num">05 — Curriculum Vitae</span>
+  <h2 class="section-title">The <em>track record.</em></h2>
+
+  <div class="cv-grid" style="margin-bottom: 80px;">
+    <div class="cv-category">Experience</div>
+    <div class="cv-entries">
+      <div class="cv-entry">
+        <div class="cv-year">Mar 2025 — Now</div>
+        <div>
+          <h4>Research Assistant — Biomedical AI Systems</h4>
+          <p>National Center of Artificial Intelligence (NCAI), Islamabad. Led AI-powered frailty assessment using Azure Kinect; presented to Japanese collaborators on-site at Juntendo University.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">Jan 2024 — Feb 2025</div>
+        <div>
+          <h4>Computer Vision Engineer — Medical Applications</h4>
+          <p>National Center of Robotics and Automation (NCRA), Rawalpindi. Built indigenous gait analysis system for Korean collaborators on Raspberry Pi 5; processed data from 200+ patients with neurological conditions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-grid" style="margin-bottom: 80px;">
+    <div class="cv-category">Education</div>
+    <div class="cv-entries">
+      <div class="cv-entry">
+        <div class="cv-year">2023 — 2025</div>
+        <div>
+          <h4>MS Mechatronics Engineering — NUST</h4>
+          <p>Specialization: Biomedical Robotics &amp; AI in Healthcare. Graduated Nov 2025.</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">2019 — 2023</div>
+        <div>
+          <h4>BE Mechatronics Engineering — Air University</h4>
+          <p>Focus: Medical Devices, Biosignal Processing, Control Systems. Graduated June 2023.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-grid" style="margin-bottom: 80px;">
+    <div class="cv-category">Certifications</div>
+    <div class="cv-entries">
+      <div class="cv-entry">
+        <div class="cv-year">DeepLearning.AI</div>
+        <div>
+          <h4>Machine Learning Specialization · AI for Medicine</h4>
+          <p>Coursera</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">Edge Impulse</div>
+        <div>
+          <h4>Computer Vision with Embedded ML</h4>
+          <p>Edge AI deployment, model optimization for embedded systems</p>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">Udemy</div>
+        <div>
+          <h4>Python for Data Science · Deep Learning for Healthcare</h4>
+          <p>Biomedical Signal Processing — MATLAB &amp; Python</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-grid">
+    <div class="cv-category">Technical Stack</div>
+    <div class="cv-entries">
+      <div class="cv-entry" style="grid-template-columns: 1fr;">
+        <div>
+          <h4>Languages</h4>
+          <div class="skills-row">
+            <span class="skill-pill">C++</span><span class="skill-pill">Python</span><span class="skill-pill">C</span><span class="skill-pill">MATLAB</span>
+          </div>
+        </div>
+      </div>
+      <div class="cv-entry" style="grid-template-columns: 1fr;">
+        <div>
+          <h4>Robotics &amp; Control</h4>
+          <div class="skills-row">
+            <span class="skill-pill">ROS / ROS2</span><span class="skill-pill">ORB-SLAM2</span><span class="skill-pill">Visual SLAM</span><span class="skill-pill">PID Control</span><span class="skill-pill">Path Planning</span>
+          </div>
+        </div>
+      </div>
+      <div class="cv-entry" style="grid-template-columns: 1fr;">
+        <div>
+          <h4>Computer Vision &amp; ML</h4>
+          <div class="skills-row">
+            <span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">OpenCV</span><span class="skill-pill">ONNX</span><span class="skill-pill">TensorRT</span><span class="skill-pill">MediaPipe</span>
+          </div>
+        </div>
+      </div>
+      <div class="cv-entry" style="grid-template-columns: 1fr;">
+        <div>
+          <h4>Embedded &amp; Hardware</h4>
+          <div class="skills-row">
+            <span class="skill-pill">Raspberry Pi</span><span class="skill-pill">NVIDIA Jetson</span><span class="skill-pill">Azure Kinect</span><span class="skill-pill">RTOS</span><span class="skill-pill">IMU / LiDAR</span>
+          </div>
+        </div>
+      </div>
+      <div class="cv-entry" style="grid-template-columns: 1fr;">
+        <div>
+          <h4>Tools</h4>
+          <div class="skills-row">
+            <span class="skill-pill">Linux</span><span class="skill-pill">Git / GitHub</span><span class="skill-pill">Docker</span><span class="skill-pill">Gazebo</span><span class="skill-pill">RViz</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section reveal">
+  <div class="contact-inner">
+    <span class="section-num">06 — Get in touch</span>
+    <h2>Let's talk about <em>research,</em> medical AI, or <em>collaboration.</em></h2>
+    <a href="mailto:official.kashifa@gmail.com" class="contact-email">official.kashifa@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://scholar.google.com/citations?user=OFEk0w0AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar ↗</a>
+      <a href="https://github.com/Kashif-Anwar0" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://orcid.org/0009-0003-9395-6158" target="_blank" rel="noopener">ORCID ↗</a>
+      <a href="https://www.linkedin.com/in/kashifa01" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="tel:+923164369240">+92 316 4369240</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Kashif Anwar · Islamabad, Pakistan
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+
+</body>
+</html>
