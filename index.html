@@ -122,8 +122,43 @@
     padding-top: 140px;
     padding-bottom: 80px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
     align-items: end;
+  }
+  .hero-photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-width: 460px;
+    width: 100%;
+    justify-self: end;
+  }
+  .hero-photo-accent {
+    position: absolute;
+    top: 20px;
+    left: -20px;
+    right: 20px;
+    bottom: -20px;
+    background: var(--accent);
+    z-index: 0;
+  }
+  .hero-photo img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%) contrast(1.02);
+    transition: filter 0.5s ease, transform 0.5s ease;
+    z-index: 1;
+  }
+  .hero-photo:hover img {
+    filter: grayscale(0%) contrast(1);
+    transform: translate(-4px, -4px);
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { max-width: 320px; margin-top: 40px; justify-self: start; }
   }
   .hero-eyebrow {
     font-family: var(--mono);
@@ -145,7 +180,7 @@
   .hero h1 {
     font-family: var(--serif);
     font-weight: 900;
-    font-size: clamp(60px, 12vw, 180px);
+    font-size: clamp(54px, 9vw, 140px);
     line-height: 0.88;
     letter-spacing: -0.04em;
     color: var(--ink);
@@ -540,6 +575,10 @@
       <div><span>Focus</span> · Biomedical Robotics &amp; AI</div>
     </div>
     <div class="hero-scroll">Scroll to read</div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-photo-accent"></div>
+    <img src="kashif.jpg" alt="Kashif Anwar — portrait" loading="eager">
   </div>
 </section>
 
